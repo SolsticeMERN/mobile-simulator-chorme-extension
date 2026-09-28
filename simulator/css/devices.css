@@ -1,0 +1,693 @@
+/**
+ * Mobile Responsive Simulator - Ultra-Realistic Device Hardware Frames
+ * Pixel-perfect CSS/SVG mockups: Dynamic Island, Punch-holes, Bezels, Buttons, Notches
+ */
+
+/* ==================== DEVICE WRAPPER & CONTAINER ==================== */
+.device-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: top center;
+  flex-shrink: 0;
+  margin: 10px 0;
+}
+
+.device-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.device-header-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.device-header-title.clickable-device-title {
+  cursor: pointer;
+  padding: 3px 8px;
+  margin: -3px -4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.device-header-title.clickable-device-title:hover {
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary);
+}
+
+.device-header-title.clickable-device-title:hover .device-title-chevron {
+  stroke: var(--primary);
+  transform: translateY(1px);
+}
+
+.device-title-chevron {
+  stroke: var(--text-muted);
+  stroke-width: 2.2;
+  fill: none;
+  margin-left: 2px;
+  transition: transform var(--transition-fast), stroke var(--transition-fast);
+}
+
+.device-header-specs {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.01em;
+}
+
+.device-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.device-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: var(--bg-surface-elevated);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.device-action-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--transition-fast), stroke var(--transition-fast);
+  pointer-events: none;
+}
+
+.device-action-btn:hover {
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.35);
+  transform: translateY(-1px);
+}
+
+.device-action-btn:hover svg {
+  stroke: #ffffff;
+  transform: scale(1.08);
+}
+
+.device-action-btn:active {
+  transform: translateY(0);
+}
+
+.device-action-btn.btn-remove-device:hover {
+  background: var(--accent-rose);
+  border-color: var(--accent-rose);
+  box-shadow: 0 2px 6px rgba(244, 63, 94, 0.35);
+}
+
+.device-action-btn.active {
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ==================== BASE HARDWARE MOCKUP CHASSIS ==================== */
+.device-mockup {
+  position: relative;
+  background: #0f172a;
+  border-radius: 44px;
+  box-shadow: var(--shadow-device);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: content-box;
+}
+
+/* Inner Screen Container that holds the Iframe */
+.device-screen-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.device-screen-wrapper::-webkit-scrollbar,
+.device-screen-iframe::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.device-screen-iframe {
+  border: none;
+  width: 100%;
+  flex: 1 1 auto;
+  height: calc(100% - 52px);
+  min-height: 0;
+  display: block;
+  background: #ffffff;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Touch overlay to emulate touch gestures, drag scroll, pointer cursor */
+.device-touch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  cursor: default;
+  pointer-events: none; /* Enabled dynamically during touch emulation */
+}
+
+/* Touch cursor visual dot - completely hidden */
+.touch-cursor {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* ==================== 1. IPHONE WITH DYNAMIC ISLAND ==================== */
+.device-mockup.frame-iphone-island {
+  padding: 14px;
+  border-radius: 56px;
+  background: linear-gradient(135deg, #2A2D36 0%, #15181E 50%, #2A2D36 100%);
+  border: 4px solid #474D5A;
+  box-shadow: 0 0 0 2px #0f1115, 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+
+.device-mockup.frame-iphone-island .device-screen-wrapper {
+  border-radius: 46px;
+}
+
+/* ==================== REALISTIC DEVICE STATUS BAR ==================== */
+.device-status-bar {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 28px 12px 26px;
+  z-index: 25;
+  user-select: none;
+  cursor: pointer;
+  background: #ffffff;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+[data-theme="dark"] .device-status-bar {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.device-status-bar.status-bar-dark {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.device-status-bar.status-bar-light {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* 1. Left Section: Clock */
+.status-bar-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.status-time {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: inherit;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 2. Center Section: Dynamic Island or Notch */
+.status-bar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Dynamic Island */
+.status-bar-center .dynamic-island {
+  width: 122px;
+  height: 32px;
+  background: #000000;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: 1px;
+}
+
+.dynamic-island-sensor {
+  width: 32px;
+  height: 11px;
+  background: #090c13;
+  border-radius: 6px;
+  opacity: 0.85;
+  margin-left: 2px;
+}
+
+.dynamic-island-camera {
+  width: 11px;
+  height: 11px;
+  background: radial-gradient(circle at 35% 35%, #25334e 0%, #0f172a 60%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  position: relative;
+  margin-right: 2px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.dynamic-island-camera::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2.5px;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+/* Classic iPhone Notch */
+.status-bar-center .notch-classic {
+  width: 155px;
+  height: 30px;
+  background: #000000;
+  border-radius: 0 0 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.notch-speaker {
+  width: 44px;
+  height: 4px;
+  background: #1e293b;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+}
+
+.notch-classic-camera {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 35% 35%, #25334e 0%, #0f172a 60%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  position: absolute;
+  top: 14px;
+  right: 32px;
+}
+
+/* Android Punch-Hole Camera */
+.status-bar-center .punch-hole {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 35% 35%, #25334e 0%, #0f172a 60%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 3. Right Section: Signal + Wifi + Battery */
+.status-bar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  flex: 1;
+  color: inherit;
+}
+
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  fill: currentColor;
+}
+
+/* Home Indicator Bar */
+.hardware-home-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 135px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* Hardware Side Buttons */
+.device-mockup.frame-iphone-island::before {
+  content: '';
+  position: absolute;
+  top: 115px;
+  left: -8px;
+  width: 4px;
+  height: 50px; /* Volume Up */
+  background: #474D5A;
+  border-radius: 3px 0 0 3px;
+  box-shadow: 0 65px 0 #474D5A, 0 -45px 0 #474D5A; /* Volume Down & Action button */
+}
+
+.device-mockup.frame-iphone-island::after {
+  content: '';
+  position: absolute;
+  top: 170px;
+  right: -8px;
+  width: 4px;
+  height: 80px; /* Power button */
+  background: #474D5A;
+  border-radius: 0 3px 3px 0;
+}
+
+/* ==================== 2. IPHONE WITH NOTCH ==================== */
+.device-mockup.frame-iphone-notch {
+  padding: 14px;
+  border-radius: 50px;
+  background: #1e2430;
+  border: 4px solid #334155;
+}
+
+.device-mockup.frame-iphone-notch .device-screen-wrapper {
+  border-radius: 40px;
+}
+
+.device-mockup.frame-iphone-notch .hardware-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 155px;
+  height: 28px;
+  background: #000000;
+  border-radius: 0 0 18px 18px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Speaker slit in notch */
+.device-mockup.frame-iphone-notch .hardware-notch::before {
+  content: '';
+  width: 50px;
+  height: 4px;
+  background: #262626;
+  border-radius: 2px;
+}
+
+/* ==================== 3. IPHONE CLASSIC (HOME BUTTON) ==================== */
+.device-mockup.frame-iphone-classic {
+  padding: 65px 16px 70px 16px;
+  border-radius: 48px;
+  background: #1e293b;
+  border: 4px solid #475569;
+}
+
+.device-mockup.frame-iphone-classic .device-screen-wrapper {
+  border-radius: 6px;
+}
+
+/* Classic top speaker and selfie cam */
+.device-mockup.frame-iphone-classic .hardware-notch {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 5px;
+  background: #334155;
+  border-radius: 3px;
+  z-index: 30;
+}
+
+.device-mockup.frame-iphone-classic .hardware-home-button {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid #475569;
+  background: #0f172a;
+}
+
+/* ==================== 4. SAMSUNG GALAXY PUNCH-HOLE ==================== */
+.device-mockup.frame-samsung-punchhole {
+  padding: 10px;
+  border-radius: 36px;
+  background: #181b22;
+  border: 3px solid #3b4252;
+  box-shadow: 0 0 0 2px #0f1115, 0 30px 65px rgba(0, 0, 0, 0.7);
+}
+
+.device-mockup.frame-samsung-punchhole .device-screen-wrapper {
+  border-radius: 28px;
+}
+
+/* Tiny Top Camera Punch Hole */
+.device-mockup.frame-samsung-punchhole .hardware-notch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 13px;
+  background: #000000;
+  border: 1px solid #1e293b;
+  border-radius: 50%;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ==================== 5. GOOGLE PIXEL ==================== */
+.device-mockup.frame-pixel-pill {
+  padding: 12px;
+  border-radius: 46px;
+  background: #202225;
+  border: 3px solid #4f535b;
+}
+
+.device-mockup.frame-pixel-pill .device-screen-wrapper {
+  border-radius: 36px;
+}
+
+.device-mockup.frame-pixel-pill .hardware-notch {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #000000;
+  border: 1px solid #2d3748;
+  border-radius: 50%;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ==================== 6. TABLET (IPAD PRO / TAB S9) ==================== */
+.device-mockup.frame-tablet {
+  padding: 20px;
+  border-radius: 36px;
+  background: #1e2430;
+  border: 4px solid #384252;
+}
+
+.device-mockup.frame-tablet .device-screen-wrapper {
+  border-radius: 20px;
+}
+
+.device-mockup.frame-tablet .hardware-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #000000;
+  border-radius: 50%;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ==================== 7. MACBOOK & LAPTOP ==================== */
+.device-mockup.frame-macbook {
+  padding: 16px 16px 28px 16px;
+  border-radius: 18px 18px 6px 6px;
+  background: #1e232e;
+  border: 3px solid #475569;
+  position: relative;
+}
+
+.device-mockup.frame-macbook .device-screen-wrapper {
+  border-radius: 6px;
+}
+
+/* Webcam notch / dot */
+.device-mockup.frame-macbook .hardware-notch {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  z-index: 30;
+}
+
+/* Bottom laptop lip */
+.device-mockup.frame-macbook::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  right: -20px;
+  height: 12px;
+  background: #334155;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #475569;
+}
+
+/* ==================== 8. SMARTWATCH (APPLE WATCH / GALAXY WATCH) ==================== */
+.device-mockup.frame-watch {
+  padding: 18px;
+  border-radius: 58px;
+  background: #11141c;
+  border: 6px solid #475569;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.device-mockup.frame-watch .device-screen-wrapper {
+  border-radius: 46px;
+}
+
+/* Digital Crown */
+.device-mockup.frame-watch::after {
+  content: '';
+  position: absolute;
+  top: 50px;
+  right: -14px;
+  width: 8px;
+  height: 40px;
+  background: #64748B;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ==================== 9. FRAMELESS / CLEAN DEVELOPER MODE ==================== */
+.device-mockup.frame-frameless,
+.device-mockup.clean-mode {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: transparent !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.device-mockup.frame-frameless .device-screen-wrapper,
+.device-mockup.clean-mode .device-screen-wrapper {
+  border-radius: 0 !important;
+}
+
+.device-mockup.frame-frameless .hardware-notch,
+.device-mockup.clean-mode .hardware-notch,
+.device-mockup.frame-frameless .device-status-bar,
+.device-mockup.clean-mode .device-status-bar,
+.device-mockup.frame-macbook .device-status-bar,
+.device-mockup.frame-tablet .device-status-bar,
+.device-container.landscape .device-status-bar,
+.device-mockup.frame-frameless .hardware-home-bar,
+.device-mockup.clean-mode .hardware-home-bar,
+.device-mockup.frame-macbook .hardware-home-bar,
+.device-mockup.frame-frameless .hardware-home-button,
+.device-mockup.clean-mode .hardware-home-button,
+.device-mockup.frame-macbook .hardware-home-button,
+.device-mockup.frame-tablet .hardware-home-button,
+.device-mockup.frame-frameless::before,
+.device-mockup.clean-mode::before,
+.device-mockup.frame-macbook::before,
+.device-mockup.frame-tablet::before,
+.device-mockup.frame-frameless::after,
+.device-mockup.clean-mode::after {
+  display: none !important;
+}
+
+.device-mockup.frame-frameless .device-screen-iframe,
+.device-mockup.clean-mode .device-screen-iframe,
+.device-container.landscape .device-screen-iframe {
+  height: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+/* ==================== LANDSCAPE MODE ROTATION ==================== */
+.device-container.landscape .device-mockup.frame-iphone-island .hardware-home-bar {
+  bottom: 50%;
+  right: 8px;
+  left: auto;
+  transform: translateY(50%) rotate(90deg);
+}

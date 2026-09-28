@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "Mobile Responsive Simulator - Multi-Device Tester",
+  "short_name": "Mobile Simulator",
+  "version": "1.0.0",
+  "description": "Test responsive web design on 81+ devices, compare side-by-side, simulate touch, export mockups, and record video demos.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "declarativeNetRequest",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules/dnr-rules.json"
+      }
+    ]
+  },
+  "action": {
+    "default_title": "Simulate this website on 81+ mobile devices",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "js": [
+        "simulator/js/hide-scrollbar-frame.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "simulator/*",
+        "icons/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

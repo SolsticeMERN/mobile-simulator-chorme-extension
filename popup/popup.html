@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Simulator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-card">
+    <!-- Header -->
+    <div class="popup-header">
+      <div class="popup-brand">
+        <img src="../icons/icon32.png" alt="Logo">
+        <div>
+          <div class="brand-title">Mobile Simulator</div>
+          <div class="brand-subtitle">81+ Responsive Devices</div>
+        </div>
+      </div>
+      <div class="version-tag">v1.0.0</div>
+    </div>
+
+    <!-- URL Input Section -->
+    <div class="popup-body">
+      <div class="url-box">
+        <label class="input-label" for="target-url">Test Page URL:</label>
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="target-url" 
+            class="popup-input" 
+            placeholder="https://example.com or localhost:3000"
+            spellcheck="false"
+          >
+        </div>
+      </div>
+
+      <!-- Quick Preset Devices -->
+      <div class="presets-section">
+        <label class="input-label">Select Starting Device:</label>
+        <div class="device-chips" id="device-chips">
+          <button class="chip active" data-device="iphone-16-pro">iPhone 16 Pro</button>
+          <button class="chip" data-device="samsung-s24-ultra">Galaxy S24 Ultra</button>
+          <button class="chip" data-device="pixel-9-pro">Pixel 9 Pro</button>
+          <button class="chip" data-device="ipad-pro-11">iPad Pro 11"</button>
+          <button class="chip" data-device="macbook-air-13">MacBook Air</button>
+        </div>
+      </div>
+
+      <!-- Mode Toggle -->
+      <div class="mode-toggle-row">
+        <span class="mode-label">Multi-Device Comparison</span>
+        <label class="switch">
+          <input type="checkbox" id="toggle-multi-mode">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Main Action Button -->
+      <button id="btn-launch" class="btn-launch">
+        <span>🚀 Launch Simulator</span>
+      </button>
+
+      <!-- Localhost Quick Actions -->
+      <div class="quick-links">
+        <button class="quick-link" data-url="http://localhost:3000">localhost:3000</button>
+        <button class="quick-link" data-url="http://localhost:5173">localhost:5173</button>
+        <button class="quick-link" data-url="http://localhost:8080">localhost:8080</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

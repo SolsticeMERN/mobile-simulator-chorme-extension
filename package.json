@@ -1,0 +1,19 @@
+{
+  "name": "mobile-responsive-simulator",
+  "version": "1.0.0",
+  "description": "Chrome, Edge & Firefox extension for simulating 81+ responsive devices with side-by-side comparison, touch emulation, transparent mockups and video demos.",
+  "scripts": {
+    "validate": "node -c background/service_worker.js popup/popup.js simulator/js/*.js && node -e \"JSON.parse(require('fs').readFileSync('manifest.json')); JSON.parse(require('fs').readFileSync('rules/dnr-rules.json')); console.log('✓ All files valid!')\"",
+    "build:zip": "mkdir -p dist && rm -f dist/mobile-simulator-v1.0.0.zip && zip -r dist/mobile-simulator-v1.0.0.zip manifest.json rules background popup simulator icons -x '*.DS_Store' && echo '✓ Chrome Web Store Package created at dist/mobile-simulator-v1.0.0.zip'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "responsive-simulator",
+    "mobile-simulator",
+    "responsive-design",
+    "mobile-first",
+    "web-development"
+  ],
+  "author": "Shakil Sarker",
+  "license": "MIT"
+}

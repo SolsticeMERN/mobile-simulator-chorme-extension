@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="phoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Icon Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern / sparkle -->
+  <circle cx="96" cy="96" r="32" fill="#ffffff" opacity="0.12"/>
+  <circle cx="430" cy="390" r="48" fill="#ffffff" opacity="0.08"/>
+
+  <!-- Desktop Monitor Outline in Background -->
+  <rect x="76" y="110" width="360" height="240" rx="16" fill="#ffffff" fill-opacity="0.15" stroke="#ffffff" stroke-width="6" stroke-opacity="0.4"/>
+  <path d="M216 350 L200 400 L312 400 L296 350" fill="#ffffff" fill-opacity="0.2"/>
+  <rect x="180" y="400" width="152" height="10" rx="5" fill="#ffffff" fill-opacity="0.35"/>
+
+  <!-- Center Mobile Phone Mockup (Front) with Shadow -->
+  <g filter="url(#shadow)">
+    <!-- Phone Body -->
+    <rect x="160" y="70" width="192" height="372" rx="36" fill="url(#phoneGrad)" stroke="#E2E8F0" stroke-width="5"/>
+    
+    <!-- Phone Screen -->
+    <rect x="172" y="86" width="168" height="340" rx="26" fill="url(#screenGrad)"/>
+    
+    <!-- Dynamic Island / Speaker Pill -->
+    <rect x="226" y="96" width="60" height="14" rx="7" fill="#0F172A"/>
+
+    <!-- Screen UI Elements: Responsive Layout Simulator Graphic -->
+    <!-- Hero block -->
+    <rect x="186" y="126" width="140" height="68" rx="10" fill="#ffffff" fill-opacity="0.9"/>
+    <!-- Responsive layout rows -->
+    <rect x="186" y="206" width="66" height="54" rx="8" fill="#ffffff" fill-opacity="0.75"/>
+    <rect x="260" y="206" width="66" height="54" rx="8" fill="#ffffff" fill-opacity="0.75"/>
+    <rect x="186" y="270" width="140" height="42" rx="8" fill="#ffffff" fill-opacity="0.8"/>
+    
+    <!-- Multi-Device Breakpoint Indicator Badges -->
+    <circle cx="210" cy="336" r="8" fill="#10B981"/>
+    <circle cx="236" cy="336" r="8" fill="#F59E0B"/>
+    <circle cx="262" cy="336" r="8" fill="#EC4899"/>
+    <circle cx="288" cy="336" r="8" fill="#6366F1"/>
+
+    <!-- Home indicator bar -->
+    <rect x="216" y="412" width="80" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.9"/>
+  </g>
+</svg>
